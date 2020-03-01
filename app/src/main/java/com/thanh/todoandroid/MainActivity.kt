@@ -1,33 +1,36 @@
 package com.thanh.todoandroid
 
-import android.graphics.Color
 import android.os.Bundle
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
+import com.github.ybq.android.spinkit.SpriteFactory
+import com.github.ybq.android.spinkit.Style
 import com.thanh.sharedpreferences.intPreference
-import com.thanh.todoandroid.databinding.ActivityMainBinding
-import es.dmoral.toasty.library.Style
-import es.dmoral.toasty.library.SuperActivityToast
-import es.dmoral.toasty.library.SuperToast
-import es.dmoral.toasty.library.utils.PaletteUtils
-import es.dmoral.toasty.toasty.Toasty
-import javax.swing.text.StyleConstants.Background
+import com.thanh.todoandroid.databinding.SpinkitLayoutBinding
 
 
 class MainActivity : AppCompatActivity() {
 
     var versionCodes: Int by intPreference(VERSION_CODES, 100)
-    lateinit var binding: ActivityMainBinding
+    lateinit var binding: SpinkitLayoutBinding
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = DataBindingUtil.setContentView(this@MainActivity, R.layout.activity_main)
+        binding = DataBindingUtil.setContentView(this@MainActivity, R.layout.spinkit_layout)
+
+
+        binding.changeBtn.setOnClickListener {
+            val lettre: Style = Style.values().get((Math.random() * Style.values().size).toInt())
+            val style: Style = lettre//Style.values().get()
+            val drawable = SpriteFactory.create(style)
+            binding.spinKit.setIndeterminateDrawable(drawable)
+        }
+
 
         //versionCodes = 200
 
-        binding.success.setOnClickListener {
+        /*binding.success.setOnClickListener {
             Toasty.success(this, "Success!", Toast.LENGTH_LONG).show()
         }
 
@@ -49,24 +52,24 @@ class MainActivity : AppCompatActivity() {
 
         binding.superId.setOnClickListener {
 
-            SuperActivityToast.create(this, Style(), Style.TYPE_BUTTON)
-                .setButtonText("UNDO")
-                //.setButtonIconResource(R.drawable.ic_undo)
-                //.setOnButtonClickListener("good_tag_name", null, onButtonClickListener)
-                .setProgressBarColor(Color.WHITE)
-                .setText("Email deleted")
-                .setDuration(Style.DURATION_LONG)
-                .setFrame(Style.FRAME_LOLLIPOP)
-                .setColor(PaletteUtils.getSolidColor(PaletteUtils.MATERIAL_PURPLE))
-                .setAnimations(Style.ANIMATIONS_POP).show()
+//            SuperActivityToast.create(this, Style(), Style.TYPE_BUTTON)
+//                .setButtonText("UNDO")
+//                //.setButtonIconResource(R.drawable.ic_undo)
+//                //.setOnButtonClickListener("good_tag_name", null, onButtonClickListener)
+//                .setProgressBarColor(Color.WHITE)
+//                .setText("Email deleted")
+//                .setDuration(Style.DURATION_LONG)
+//                .setFrame(Style.FRAME_LOLLIPOP)
+//                .setColor(PaletteUtils.getSolidColor(PaletteUtils.MATERIAL_PURPLE))
+//                .setAnimations(Style.ANIMATIONS_POP).show()
+//
+//            val superActivityToast = SuperActivityToast(this, SuperToast.Type.PROGRESS)
+//            superActivityToast.text = "Hello world!"
+//            superActivityToast.isIndeterminate = true
+//            superActivityToast.progressIndeterminate = true
+//            superActivityToast.show()
 
-            val superActivityToast = SuperActivityToast(this, SuperToast.Type.PROGRESS)
-            superActivityToast.text = "Hello world!"
-            superActivityToast.isIndeterminate = true
-            superActivityToast.progressIndeterminate = true
-            superActivityToast.show()
-
-        }
+        }**/
 
 
     }

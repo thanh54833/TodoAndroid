@@ -11,8 +11,10 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/Todo" />
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/sharedpreferences" />
+            <option value="$PROJECT_DIR$/spinkit" />
             <option value="$PROJECT_DIR$/toasty" />
           </set>
         </option>

@@ -1,3 +1,4 @@
-include ':app', ':toasty'
+include ':app', ':toasty', ':spinkit'
 rootProject.name = 'TodoAndroid'
 include ':sharedpreferences'
+include ':Todo'
